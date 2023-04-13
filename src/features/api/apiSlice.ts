@@ -12,8 +12,8 @@ export const apiSlice = createApi({
   tagTypes: ['Post', 'Get', 'Patch', 'Delete'],
   endpoints: (builder) => ({
     getPosts: builder.query({
-      query: (url) => ({
-        url: url ?? '/',
+      query: () => ({
+        url: '/',
         method: 'GET',
       })
     }),
