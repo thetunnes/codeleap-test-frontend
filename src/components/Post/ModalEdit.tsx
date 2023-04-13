@@ -77,7 +77,7 @@ export function ModalEdit({ postToEdit, onClose }: IEditProps) {
 
       <nav className="flex gap-4 self-end mt-6">
         <Button onClick={onClose}>Cancel</Button>
-        <Button color="green" onClick={handleEditThisPost}>
+        <Button color="green" onClick={handleEditThisPost} disabled={!dataPost.title || !dataPost.content}>
           Save
         </Button>
       </nav>
