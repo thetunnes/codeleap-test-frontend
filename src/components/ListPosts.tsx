@@ -1,29 +1,26 @@
 import { IPost, Post } from "./Post";
 import { useGetPostsQuery } from "../features/api/apiSlice";
-
+import { Button } from "./Button";
 
 export function ListPosts() {
-
-  const { data: posts, isLoading, isError, isSuccess } = useGetPostsQuery({})
+  const { data: posts, isLoading, isError, isSuccess } = useGetPostsQuery({});
+  let postsRendered = <></>;
 
   if (isLoading) {
-    return <p>Loading posts...</p>
+    postsRendered = <p>Loading posts...</p>;
   }
 
+  console.log(posts)
+
   if (isSuccess) {
-    return (
-      posts.results.map((post: IPost) => <Post key={post.id} post={post} />)
-    )
+    postsRendered = (
+      <>
+        {posts.results.map((post: IPost) => (
+          <Post key={post.id} post={post} />
+        ))}
+      </>
+    );
   }
-  // return (
-  //   <>
-  //     {isLoading ? (
-  //       <p>Loading posts...</p>
-  //     ) : list?.posts.length ? (
-  //       list.posts.map((post) => <Post key={post.id} post={post} />)
-  //     ) : (
-  //       <p>Not found Posts.</p>
-  //     )}
-  //   </>
-  // );
+
+  return postsRendered
 }
